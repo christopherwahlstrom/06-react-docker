@@ -5,6 +5,9 @@ FROM node:lts-alpine
 # /app blir aktuell mapp (när man skriver . senare i filen)
 WORKDIR /app
 
+# Installera webbservern vi ska använda i sista steget
+RUN npm install -g http-server
+
 # Kopiera package.json -> in till mappen "app" i image
 #COPY package.json package-lock.json ./
 COPY package*.json ./
