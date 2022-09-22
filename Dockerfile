@@ -29,5 +29,6 @@ EXPOSE 8080
 
 # Starta en webbserver som servar de statiska filerna i /app/dist
 # alternativ server: Nginx
-CMD ["http-server", "dist"]
+# CMD körs när man startar containern
+CMD ["http-server", "dist", "-p 8080"]
 
