@@ -1,4 +1,4 @@
-# Hämta Linux + Node
+# Build context. Hämta Linux + Node
 FROM node:lts-alpine
 
 # Skapa en mapp "app" inuti Docker image
@@ -6,6 +6,7 @@ FROM node:lts-alpine
 WORKDIR /app
 
 # Installera webbservern vi ska använda i sista steget
+# Man KAN använda CMD ["npm", "run", "dev"] i stället, men den startar den lokala utvecklingsservern. Utvecklingsservern är gjord för att felsöka, inte för att köra "production".
 RUN npm install -g http-server
 
 # Kopiera package.json -> in till mappen "app" i image
@@ -20,7 +21,7 @@ RUN npm install
 COPY . .
 
 # Bygg projektet - kör byggskriptet
-# Statiska filer hamnar i /app/dist
+# Statiska filer (HTML, CSS, JS) hamnar i /app/dist
 RUN npm run build
 
 # Gör port 8080 synlig utåt
